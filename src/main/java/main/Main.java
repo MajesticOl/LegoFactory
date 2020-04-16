@@ -8,8 +8,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             Usb usb_devices = new Usb();
-            Usb.list_device();
-            Console console = new Console();
+            Console console = new Console(usb_devices);
             console.run();
         }finally{
             LibUsb.exit(null);

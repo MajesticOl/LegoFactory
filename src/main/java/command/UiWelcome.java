@@ -1,17 +1,29 @@
 package command;
 
+import main.Usb;
 import ui.Console;
 import ui.ConsoleState;
 
 import java.util.Scanner;
 
-public class UiWelcome implements Command{
+public class UiWelcome extends Command{
+
+    public UiWelcome(Usb usb) {
+        super(usb);
+    }
 
     @Override
     public void execute() {
+        int a;
         Scanner in = new Scanner(System.in);
-        System.out.println("1.Exit\n:");
-        int a = in.nextInt();
-        if(a == 1) Console.state = ConsoleState.EXIT;
+        usb.list_device();
+        System.out.println("Choose a device or q to exit\n:");
+
+        if(in.hasNextInt()) {
+            usb.select_device(in.nextInt()-1);
+            Console.state = ConsoleState.DEVICE;
+        }else{
+            Console.state = ConsoleState.EXIT;
+        }
     }
 }

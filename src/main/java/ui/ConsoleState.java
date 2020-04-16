@@ -2,5 +2,7 @@ package ui;
 
 public enum ConsoleState {
     WELCOME,
-    EXIT
+    EXIT,
+    DEVICE,
+    LOADING
 }
